@@ -6,4 +6,12 @@ In other cases, there are some compatibility wrappers for Octave, so that we can
 
 - `read_complex_byte.m`: This function reads a file recorded with the RTL-SDR dongle and returns a complex vector with the samples. The samples are normalised to between -1 and 1.
 
+To use it:
+```matlab
+x = read_complex_byte('filename.bin');
+% note: the size of x will be the number of samples
+% size(x)
+% the first sample is x(1)
+```
+
 - `Theoretical_Error_Rates_QFunc_MATLAB.ipynb`: This notebook contains some calculations for the theoretical error rates of a communication system. It uses both the qfunc and qfuncinv functions in MATLAB.
