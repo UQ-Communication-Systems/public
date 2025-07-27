@@ -1,8 +1,8 @@
-function v = read_complex_byte(filename, count)
-%% usage: read_complex_byte (filename, [count])
+function v = read_complex_int16(filename, count)
+%% usage: read_complex_int16 (filename, [count])
 %%
 %%  open filename and return the contents as a column vector,
-%%  reading 8bit unsigned, and treating them as doubles (and normalizing
+%%  reading 16bit signed, and treating them as doubles (and normalizing
 %% to (+/- 1)
 %%
 
@@ -11,7 +11,7 @@ function v = read_complex_byte(filename, count)
 % endif;
 
 % Maximum magnitude of a signed integers of different sizes
-MAXI8Q7 = 2**7
+MAXI12Q11 = 2**11
 
 if (nargin < 2)
 count = Inf;
@@ -21,10 +21,10 @@ f = fopen(filename, 'rb');
 if (f < 0)
 v = 0;
 else
-t = fread (f, [2, count], 'uint8=>double');
+t = fread (f, [2, count], 'int16=>double');
 fclose (f);
-v = t(1,:)-(MAXI8Q7-1) + (t(2,:)-(MAXI8Q7-1))*1i;
-v = v / MAXI8Q7;
+v = t(1,:) + (t(2,:))*1i;
+v = v / MAXI12Q11;
 [r, c] = size (v);
 v = reshape (v, c, r);
 end;
