@@ -11,7 +11,7 @@ function v = read_complex_byte(filename, count)
 % endif;
 
 % Maximum magnitude of a signed integers of different sizes
-MAXI8Q7 = 2**7
+MAXI8Q7 = 2^7;
 
 if (nargin < 2)
 count = Inf;
