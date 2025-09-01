@@ -1,5 +1,3 @@
-
-
 ## Modulators and Demodulators for Python
 #
 # To allow you to test your code using pure Python code (without using Gnuradio) here are a set of functions that you should put into a new package.
@@ -87,3 +85,11 @@ def qamdemod(y, M):
 # how to use it?
 # tx = qammod([0,8,2,3], 16)
 # qamdemod(tx, 16)
+
+def intdump(x, num):
+    """Integrate and dump, useful for receivers
+    returns an np.array, so it is useful for other processing functions"""
+    out = []
+    for zidx in np.arange(0, len(x), num): 
+        out.append(np.sum(x[zidx:zidx+num]))
+    return np.array(out)
