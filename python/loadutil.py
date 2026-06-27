@@ -28,6 +28,5 @@ def read_complex_byte(filename, MAX_SAMPLES=-1):
 
 def read_complex_float(filename, MAX_SAMPLES=-1):
     data = np.fromfile(filename, dtype=np.float32, count=MAX_SAMPLES)
-    print('dx', data.shape)
     data.dtype = np.complex64
     return data
